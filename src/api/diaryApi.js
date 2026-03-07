@@ -17,8 +17,8 @@ export const fetchDiaryById = (id, status) =>
   });
 
 /* ---------------- UPDATE ---------------- */
-export const updateDiaryApi = (id, data) =>
-  api.put(`/diary/update/${id}`, data);
+export const updateDiaryApi = (id, data, status="ACTIVE") =>
+  api.put(`/diary/update/${id}?status=${status}`, data);
 
 /* ---------------- DELETE (TRASH) ---------------- */
 export const deleteDiaryApi = (id) =>
@@ -82,8 +82,6 @@ export const formatDate = (date) => {
 };
 
 /* FOLDER DIARY */
-export const createDiaryInFolderApi = (data) =>
-  api.post("/folder/create/diary", data);
 
 export const restoreDiaryApi = (id, status) =>
   api.put(`/diary/restore/${id}`, null, {

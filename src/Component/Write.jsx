@@ -32,15 +32,20 @@ export default function WriteDiary() {
       if (diaryId) loadDiary();
     }, [diaryId]);
   
-  const loadDiary = async () => {
-    setLoading(true);
-    
-    const res = await fetchDiaryById(diaryId, status);
-    setTitle(res.data.title);
-    setContent(res.data.content);
-    setIsEdit(true);
-  };
-
+   const loadDiary = async () => {
+   try {
+     setLoading(true);
+     const res = await fetchDiaryById(diaryId, status);
+ 
+     setTitle(res.data.title);
+     setContent(res.data.content);
+     setIsEdit(true);
+   } catch (err) {
+     showError("Failed to load diary");
+   } finally {
+     setLoading(false);
+   }
+   };
 
   const saveDiary = async () => {
     if (!title || !content) {
@@ -52,7 +57,7 @@ export default function WriteDiary() {
 
     try {
       if (isEdit) {
-        await updateDiaryApi(diaryId, { title, content });
+        await updateDiaryApi(diaryId, { title, content }, status);
          showSuccess("Diary Updated successfully!");
 
       } else {
