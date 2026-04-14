@@ -1,9 +1,10 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://diaryapplication-backend-production-7a12.up.railway.app",
+  baseURL: "https://diary-application-backend-production.up.railway.app",
   withCredentials: true,
 });
+
 
 api.interceptors.request.use((config) => {
 const token = localStorage.getItem("accessToken"); 
@@ -23,7 +24,7 @@ const token = localStorage.getItem("accessToken");
 
       try {
         const res = await axios.post(
-          "https://diary-application-backend-production-up.railway.app/api/auth/refresh",
+          "https://diary-application-backend-production.up.railway.app/api/auth/refresh",
           {},
           { withCredentials: true }
         );
