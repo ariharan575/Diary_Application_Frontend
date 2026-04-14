@@ -23,7 +23,7 @@ const token = localStorage.getItem("accessToken");
 
       try {
         const res = await axios.post(
-          "https://diaryapplication-backend-production-7a12.up.railway.app/api/auth/refresh",
+          "https://diary-application-backend-production-up.railway.app/api/auth/refresh",
           {},
           { withCredentials: true }
         );
